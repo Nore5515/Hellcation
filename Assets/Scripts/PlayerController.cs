@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     float moveLimiter = 0.7f;
 
     public float runSpeed = 20.0f;
+    public GameObject bullet;
+    public AudioSource gunshot;
+    public float bulletSpeed = 10.0f;
 
     void Start ()
     {
@@ -22,6 +25,19 @@ public class PlayerController : MonoBehaviour
         // Gives a value between -1 and 1
         horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
         vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+
+        if (Input.GetButtonDown("Fire2"))
+         {
+             gunshot.Play();
+             GameObject instBullet = Instantiate(bullet, this.transform.GetChild(2).GetChild(1).transform.position, Quaternion.identity);
+             Rigidbody2D instBulletRB = instBullet.GetComponent<Rigidbody2D>();
+
+             Vector2 direction = (this.transform.GetChild(2).GetChild(1).transform.position - this.transform.position);
+             direction.Normalize();
+ 
+             instBulletRB.AddForce(direction * bulletSpeed);
+             Destroy(instBullet, 3f);
+         }
     }
 
     void FixedUpdate()
@@ -36,3 +52,6 @@ public class PlayerController : MonoBehaviour
         body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
     }
 }
+         
+ 
+ 
