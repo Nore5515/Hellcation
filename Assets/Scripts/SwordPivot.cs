@@ -12,6 +12,9 @@ public class SwordPivot : MonoBehaviour
     public AudioSource swordSwish;
     bool swordVisible = false;
 
+    public GameObject swordCollider;
+    private List<Collider2D> enemies;
+
     void Start()
     {
         target = this.transform;
@@ -34,6 +37,12 @@ public class SwordPivot : MonoBehaviour
         swordSlash.SetActive(swordVisible);
         if (Input.GetButtonDown("Fire1") && swordVisible == false)
         {
+            enemies = swordCollider.GetComponent<SwordCollider>().GetEnemies();
+            int index = 0;
+            while (index < enemies.Count){
+                enemies[index].GetComponent<Enemy>().StartDying();
+                index += 1;
+            }
             Debug.Log("CLICKED");
             swordSlash.GetComponent<SpriteRenderer>().flipY = !swordSlash.GetComponent<SpriteRenderer>().flipY;
             swordVisible = true;
