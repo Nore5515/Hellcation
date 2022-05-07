@@ -13,8 +13,11 @@ public class Bullet : MonoBehaviour
         }
         if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Destroy(col.gameObject);
-            Destroy(this.gameObject);
+            if (col.GetComponent<Enemy>().dying == false){
+                Debug.Log("Collision!");
+                Destroy(this.gameObject);
+                col.GetComponent<Enemy>().StartDying();
+            }
         }
     }
 }
