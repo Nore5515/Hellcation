@@ -29,10 +29,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
          {
              gunshot.Play();
-             GameObject instBullet = Instantiate(bullet, this.transform.GetChild(2).GetChild(1).transform.position, Quaternion.identity);
+             GameObject instBullet = Instantiate(bullet, this.transform.GetChild(2).GetChild(0).transform.position, Quaternion.identity);
              Rigidbody2D instBulletRB = instBullet.GetComponent<Rigidbody2D>();
 
-             Vector2 direction = (this.transform.GetChild(2).GetChild(1).transform.position - this.transform.position);
+             Vector2 direction = (this.transform.GetChild(2).GetChild(0).transform.position - this.transform.position);
              direction.Normalize();
  
              instBulletRB.AddForce(direction * bulletSpeed);
