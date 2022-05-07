@@ -11,5 +11,13 @@ public class Bullet : MonoBehaviour
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f,0.0f);
             this.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
         }
+        if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if (col.GetComponent<Enemy>().dying == false){
+                Debug.Log("Collision!");
+                Destroy(this.gameObject);
+                col.GetComponent<Enemy>().StartDying();
+            }
+        }
     }
 }

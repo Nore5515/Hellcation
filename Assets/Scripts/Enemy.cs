@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
 
     public Animator animation;
+    public bool dying = false;
+    public int dyingCountdown = 300;
 
     void Awake()
     {
@@ -17,16 +19,46 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
+    public void StartDying(){
+        Debug.Log("Uh oh im starting to dieee");
+        dying = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Chase();
-        if (player.transform.position.y > this.transform.position.y){
-            animation.Play("ImpWalkUp");
+        Debug.Log(dying);
+        if (dying == false)
+        {
+            // Debug.Log("NOT DEAD");
+            Chase();
+            if (player.transform.position.y > this.transform.position.y){
+                animation.Play("ImpWalkUp");
+            }
+            else{
+                animation.Play("ImpWalk");
+            }
         }
-        else{
-            animation.Play("ImpWalk");
+        if (dying == true){
+            Die();
         }
+        
+    }
+
+    void Die()
+    {
+        // Debug.Log("DYING");
+        if (dyingCountdown > 0)
+        {   
+            dyingCountdown -= 1;
+            // animation.SetTrigger()
+            animation.Play("ImpDeath");
+        } 
+        else
+        {
+            Destroy(this.gameObject);
+        }
+                    
     }
 
 
