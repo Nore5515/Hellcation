@@ -9,6 +9,7 @@ public class SwordPivot : MonoBehaviour
     Vector3 object_pos;
     float angle;
     public GameObject swordSlash;
+    public AudioSource swordSwish;
     bool swordVisible = false;
 
     void Start()
@@ -31,13 +32,32 @@ public class SwordPivot : MonoBehaviour
     {
         faceMouse();
         swordSlash.SetActive(swordVisible);
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && swordVisible == false)
         {
+            Debug.Log("CLICKED");
+            swordSlash.GetComponent<SpriteRenderer>().flipY = !swordSlash.GetComponent<SpriteRenderer>().flipY;
             swordVisible = true;
-        }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            swordVisible = false;
+            StartCoroutine(Countdown());
+            swordSwish.Play();
         }
     }
+
+    private IEnumerator Countdown()
+    {
+        float duration = 0.1f; // 3 seconds you can change this 
+        //to whatever you want
+        float normalizedTime = 0;
+        while(normalizedTime <= 1f)
+        {
+            normalizedTime += Time.deltaTime / duration;
+            yield return null;
+        }
+        
+        Debug.Log("Swapping");
+        swordVisible = false;
+    }
 }
+
+     
+ 
+ 
