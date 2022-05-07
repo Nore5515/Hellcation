@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
              direction.Normalize();
  
              instBulletRB.AddForce(direction * bulletSpeed);
+             instBullet.transform.rotation = this.transform.GetChild(2).transform.rotation;
              Destroy(instBullet, 3f);
          }
     }
