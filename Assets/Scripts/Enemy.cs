@@ -27,10 +27,17 @@ public class Enemy : MonoBehaviour
     }
 
     public void StartDying(){
-        if (dying == false){
-            GetComponent<BoxCollider2D>().enabled = false;
+        if (HP > 1){
+            Debug.Log("TAKING DAMAGE");
+            HP -= 1;
         }
-        dying = true;
+        else{
+            if (dying == false){
+                GetComponent<BoxCollider2D>().enabled = false;
+            }
+            dying = true;
+        }
+        
     }
 
     // Update is called once per frame

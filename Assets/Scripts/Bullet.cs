@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
+    List<Enemy> hitList = new List<Enemy>();
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("Walls"))
@@ -13,10 +16,11 @@ public class Bullet : MonoBehaviour
         }
         if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            if (col.GetComponent<Enemy>().dying == false){
+            if (!hitList.Contains(col.GetComponent<Enemy>())){
                 Debug.Log("Collision!");
                 Destroy(this.gameObject);
                 col.GetComponent<Enemy>().StartDying();
+                hitList.Add(col.GetComponent<Enemy>());
             }
         }
     }

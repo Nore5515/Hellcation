@@ -125,6 +125,7 @@ MonoBehaviour:
   dying: 0
   dyingCountdown: 75
   enemyDeathSound: {fileID: 0}
+  HP: 4
 --- !u!50 &8294992655391792497
 Rigidbody2D:
   serializedVersion: 4
