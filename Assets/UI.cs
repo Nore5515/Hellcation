@@ -13,6 +13,8 @@ public class UI : MonoBehaviour
     public GameObject heart3;
     public GameObject heart4;
 
+    private int rewardedCoins = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,10 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timing > (15 * (rewardedCoins+1))){
+            PlayerStats.UpgradeCoins += 1;
+            rewardedCoins += 1;
+        }
         timing += Time.deltaTime;
         Mathf.Round(timing);
         time.text = timing.ToString();
