@@ -24,7 +24,7 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timing > (15 * (rewardedCoins+1))){
+        if (timing > (10 * (rewardedCoins+1))){
             PlayerStats.UpgradeCoins += 1;
             rewardedCoins += 1;
         }
