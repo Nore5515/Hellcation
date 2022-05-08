@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -69,7 +70,6 @@ public class PlayerController : MonoBehaviour
         else if (vertical < 0){
             Debug.Log("Down");
             animation.Play("Down");
-            TakeDamage();
         } 
         else{
             Debug.Log("Idle");
@@ -101,6 +101,9 @@ public class PlayerController : MonoBehaviour
             HP -= 1;
             hpbar.SetHealth(HP);
             iFrames = maxIFrames;
+            if (HP <= 0){
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            }
         }
         
     }
@@ -148,5 +151,13 @@ public class PlayerController : MonoBehaviour
         instBullet.transform.rotation = this.transform.GetChild(2).transform.rotation;
 
         Destroy(instBullet, 3f);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            TakeDamage();
+        }
     }
 }
