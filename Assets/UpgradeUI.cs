@@ -26,4 +26,7 @@ public class UpgradeUI : MonoBehaviour
     public void SwingSize () {
         PlayerStats.SwingSize += 0.16f;
     }
+    public void NextLevel () {
+        
+    }
 }
