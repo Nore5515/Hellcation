@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < bcount; i++)
         {
-            gunshot.Play();
+            gunshot.PlayOneShot(gunshot.clip, 0.24f);
             NewBullet();
             float normalizedTime2 = 0;
             while(normalizedTime2 <= 1f)
