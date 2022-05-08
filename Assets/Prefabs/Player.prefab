@@ -435,9 +435,6 @@ MonoBehaviour:
   swordSlash: {fileID: 7331939756220828563}
   swordSwish: {fileID: 8553838143623769872}
   canSwing: 1
-  swingDelay: 1
-  swingMomentum: 2000
-  swingScale: 1
   swordCollider: {fileID: 3741657}
 --- !u!1 &7331939756220828563
 GameObject:
@@ -574,16 +571,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 0}
-  runSpeed: 50
   bullet: {fileID: 4987865421276569987, guid: 9859ce09a691e7d43b43dd72588b8150, type: 3}
   gunshot: {fileID: 146890173954244331}
-  bulletSpeed: 1000
-  rof: 1
   animation: {fileID: 933328141}
   canFire: 1
-  bcount: 1
   spread: 10
   burstSpeed: 0.05
+  maxHP: 3
+  HP: 3
+  hpbar: {fileID: 0}
+  iFrames: 0
+  maxIFrames: 30
 --- !u!50 &5342332025623592411
 Rigidbody2D:
   serializedVersion: 4
@@ -919,7 +917,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
