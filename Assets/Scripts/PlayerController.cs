@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    //SceneManager.LoadScene("UpgradeUI", LoadSceneMode.Single);
+                    SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
                 }
             }
         }
