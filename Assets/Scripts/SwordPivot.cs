@@ -61,6 +61,7 @@ public class SwordPivot : MonoBehaviour
             direction.Normalize();
             //Debug.Log(direction);
             this.transform.parent.GetComponent<PlayerController>().playerBody.AddForce(direction * swingMomentum);
+            this.transform.parent.GetComponent<PlayerController>().iFrames = this.transform.parent.GetComponent<PlayerController>().maxIFrames; 
 
             StartCoroutine(SeeSword());
             StartCoroutine(SwordDelay());
