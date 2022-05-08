@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
     public int maxIFrames = 30;
 
 
-
     void Start ()
     {
         playerBody = GetComponent<Rigidbody2D>();
