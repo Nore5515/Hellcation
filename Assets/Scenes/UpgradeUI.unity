@@ -1625,6 +1625,7 @@ MonoBehaviour:
   swingSpeed: {fileID: 1812047791}
   chargeLength: {fileID: 414179716}
   swingSize: {fileID: 1527356830}
+  coinsLeft: {fileID: 276639469}
 --- !u!1 &1509709043
 GameObject:
   m_ObjectHideFlags: 0
