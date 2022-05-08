@@ -34,6 +34,6 @@ public class UpgradeUI : MonoBehaviour
         Debug.Log(PlayerStats.SwingSize);
     }
     public void NextLevel () {
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("Level" + Level++, LoadSceneMode.Single);
     }
 }
