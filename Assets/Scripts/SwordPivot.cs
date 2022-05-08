@@ -62,9 +62,11 @@ public class SwordPivot : MonoBehaviour
             //Debug.Log(direction);
             this.transform.parent.GetComponent<PlayerController>().playerBody.AddForce(direction * swingMomentum);
             this.transform.parent.GetComponent<PlayerController>().iFrames = this.transform.parent.GetComponent<PlayerController>().maxIFrames; 
+            this.transform.GetChild(3).GetComponent<PolygonCollider2D>().enabled = true;
 
             StartCoroutine(SeeSword());
             StartCoroutine(SwordDelay());
+            StartCoroutine(ChargeBoxActive());
         }
     }
 
@@ -80,6 +82,18 @@ public class SwordPivot : MonoBehaviour
             yield return null;
         }
         swordVisible = false;
+    }
+
+    private IEnumerator ChargeBoxActive()
+    {
+        float duration = 0.25f;
+        float normalizedTime = 0;
+        while(normalizedTime <= 1f)
+        {
+            normalizedTime += Time.deltaTime / duration;
+            yield return null;
+        }
+        this.transform.GetChild(3).GetComponent<PolygonCollider2D>().enabled = false;
     }
 
     private IEnumerator SwordDelay()

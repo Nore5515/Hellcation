@@ -157,7 +157,9 @@ public class PlayerController : MonoBehaviour
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            TakeDamage();
+            if (col.gameObject.GetComponent<Enemy>().dying == false){
+                TakeDamage();
+            }
         }
     }
 }
