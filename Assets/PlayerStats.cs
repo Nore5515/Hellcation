@@ -4,8 +4,11 @@ using UnityEngine;
 
 public static class PlayerStats
 {
-    public static int Kills { get; set; }
-    public static int Deaths { get; set; }
-    public static int Assists { get; set; }
-    public static float Points { get; set; }
+    public static float MovementSpeed { get; set; }
+    public static float BulletVelocity { get; set; }
+    public static float FireRate { get; set; }
+    public static int NumberOfBullets { get; set; }
+    public static float SwingSpeed { get; set; }
+    public static float ChargeLength { get; set; }
+    public static float SwingSize { get; set; }
 }
