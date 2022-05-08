@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     public float bulletSpeed = 10.0f;
     public float rof = 1.0f; //rate of fire
     public bool canfire = true;
+    public int bcount = 1;
+    public float spread = 10;
+    public float burstspeed = 0.05f;
+
 
     void Start ()
     {
@@ -49,16 +53,8 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Fire()
     {
         canfire = false;
-
-        gunshot.Play();
-        GameObject instBullet = Instantiate(bullet, this.transform.GetChild(2).GetChild(1).transform.position, Quaternion.identity);
-        Rigidbody2D instBulletRB = instBullet.GetComponent<Rigidbody2D>();
-
-        Vector2 direction = (this.transform.GetChild(2).GetChild(1).transform.position - this.transform.position);
-        direction.Normalize();
- 
-        instBulletRB.AddForce(direction * bulletSpeed);
-        instBullet.transform.rotation = this.transform.GetChild(2).transform.rotation;
+        
+        StartCoroutine(Bullets());
 
         float normalizedTime = 0;
         while(normalizedTime <= 1f)
@@ -67,7 +63,35 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        Destroy(instBullet, 3f);
         canfire = true;
+    }
+
+    private IEnumerator Bullets()
+    {
+        for (int i = 0; i < bcount; i++)
+        {
+            gunshot.Play();
+            NewBullet();
+            float normalizedTime2 = 0;
+            while(normalizedTime2 <= 1f)
+            {
+                normalizedTime2 += Time.deltaTime / burstspeed;
+                yield return null;
+            }
+        }
+    }
+
+    void NewBullet()
+    {
+        GameObject instBullet = Instantiate(bullet, this.transform.GetChild(2).GetChild(1).transform.position, Quaternion.identity);
+        Rigidbody2D instBulletRB = instBullet.GetComponent<Rigidbody2D>();
+
+        Vector2 direction = (this.transform.GetChild(2).GetChild(1).transform.position - this.transform.position);
+        
+        direction.Normalize();
+        instBulletRB.AddForce(direction * bulletSpeed);
+        instBullet.transform.rotation = this.transform.GetChild(2).transform.rotation;
+
+        Destroy(instBullet, 3f);
     }
 }
