@@ -152,13 +152,13 @@ public class PlayerController : MonoBehaviour
         Destroy(instBullet, 3f);
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            if (col.gameObject.GetComponent<Enemy>().dying == false){
-                TakeDamage();
-            }
-        }
-    }
+    // void OnTriggerEnter2D(Collider2D col)
+    // {
+    //     if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+    //     {
+    //         if (col.gameObject.GetComponent<Enemy>().dying == false){
+    //             TakeDamage();
+    //         }
+    //     }
+    // }
 }
