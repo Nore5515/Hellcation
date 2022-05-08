@@ -11,6 +11,14 @@ public class SwordPivot : MonoBehaviour
     public GameObject swordSlash;
     public AudioSource swordSwish;
     bool swordVisible = false;
+    public bool canSwing = true;
+    public float swingDelay = 1.0f;
+    public float swingMomentum = 2000.0f;
+    public float swingScale = 1.0f;
+
+    float slashX = -0.08254997f;
+    float slashY = 0.08254997f;
+    float slashZ = 0.3302f;
 
     public GameObject swordCollider;
     private List<Collider2D> enemies;
@@ -35,35 +43,53 @@ public class SwordPivot : MonoBehaviour
     {
         faceMouse();
         swordSlash.SetActive(swordVisible);
-        if (Input.GetButtonDown("Fire1") && swordVisible == false)
+        if (Input.GetButtonDown("Fire1") && canSwing == true)
         {
+            canSwing = false;
+            swordCollider.transform.localScale = new Vector3(swingScale, swingScale, swingScale);
+            swordSlash.transform.localScale = new Vector3(slashX * swingScale, slashY * swingScale, slashZ * swingScale);
+            swordSlash.GetComponent<SpriteRenderer>().flipY = !swordSlash.GetComponent<SpriteRenderer>().flipY;
+
             enemies = swordCollider.GetComponent<SwordCollider>().GetEnemies();
             int index = 0;
             while (index < enemies.Count){
                 enemies[index].GetComponent<Enemy>().StartDying();
                 index += 1;
             }
-            Debug.Log("CLICKED");
-            swordSlash.GetComponent<SpriteRenderer>().flipY = !swordSlash.GetComponent<SpriteRenderer>().flipY;
-            swordVisible = true;
-            StartCoroutine(Countdown());
-            swordSwish.Play();
+            
+            Vector2 direction = (this.transform.GetChild(1).position - this.transform.position);
+            direction.Normalize();
+            //Debug.Log(direction);
+            this.transform.parent.GetComponent<PlayerController>().playerBody.AddForce(direction * swingMomentum);
+
+            StartCoroutine(SeeSword());
+            StartCoroutine(SwordDelay());
         }
     }
 
-    private IEnumerator Countdown()
+    private IEnumerator SeeSword()
     {
-        float duration = 0.1f; // 3 seconds you can change this 
-        //to whatever you want
+        swordVisible = true;
+        swordSwish.Play();
+        float duration = 0.1f;
         float normalizedTime = 0;
         while(normalizedTime <= 1f)
         {
             normalizedTime += Time.deltaTime / duration;
             yield return null;
         }
-        
-        Debug.Log("Swapping");
         swordVisible = false;
+    }
+
+    private IEnumerator SwordDelay()
+    {
+        float normalizedTime = 0;
+            while(normalizedTime <= 1f)
+            {
+                normalizedTime += Time.deltaTime / swingDelay;
+                yield return null;
+            }
+        canSwing = true;
     }
 }
 

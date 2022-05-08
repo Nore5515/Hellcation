@@ -471,8 +471,11 @@ MonoBehaviour:
   bullet: {fileID: 4987865421276569987, guid: 9859ce09a691e7d43b43dd72588b8150, type: 3}
   gunshot: {fileID: 146890173954244331}
   bulletSpeed: 1000
-  rof: 0.4
+  rof: 1
   canfire: 1
+  bcount: 1
+  spread: 10
+  burstspeed: 0.05
 --- !u!50 &5342332025623592411
 Rigidbody2D:
   serializedVersion: 4
