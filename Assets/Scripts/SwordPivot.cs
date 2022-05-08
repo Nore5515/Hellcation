@@ -11,6 +11,8 @@ public class SwordPivot : MonoBehaviour
     public GameObject swordSlash;
     public AudioSource swordSwish;
     bool swordVisible = false;
+    public bool canSwing = true;
+    public float swingDelay = 1.0f;
 
     public GameObject swordCollider;
     private List<Collider2D> enemies;
@@ -35,35 +37,46 @@ public class SwordPivot : MonoBehaviour
     {
         faceMouse();
         swordSlash.SetActive(swordVisible);
-        if (Input.GetButtonDown("Fire1") && swordVisible == false)
+        if (Input.GetButtonDown("Fire1") && canSwing == true)
         {
+            canSwing = false;
             enemies = swordCollider.GetComponent<SwordCollider>().GetEnemies();
             int index = 0;
             while (index < enemies.Count){
                 enemies[index].GetComponent<Enemy>().StartDying();
                 index += 1;
             }
-            Debug.Log("CLICKED");
             swordSlash.GetComponent<SpriteRenderer>().flipY = !swordSlash.GetComponent<SpriteRenderer>().flipY;
-            swordVisible = true;
-            StartCoroutine(Countdown());
-            swordSwish.Play();
+            
+            StartCoroutine(SeeSword());
+            StartCoroutine(SwordDelay());
+            
         }
     }
 
-    private IEnumerator Countdown()
+    private IEnumerator SeeSword()
     {
-        float duration = 0.1f; // 3 seconds you can change this 
-        //to whatever you want
+        swordVisible = true;
+        swordSwish.Play();
+        float duration = 0.1f; // 3 seconds you can change this to whatever you want
         float normalizedTime = 0;
         while(normalizedTime <= 1f)
         {
             normalizedTime += Time.deltaTime / duration;
             yield return null;
         }
-        
-        Debug.Log("Swapping");
         swordVisible = false;
+    }
+
+    private IEnumerator SwordDelay()
+    {
+        float normalizedTime = 0;
+            while(normalizedTime <= 1f)
+            {
+                normalizedTime += Time.deltaTime / swingDelay;
+                yield return null;
+            }
+        canSwing = true;
     }
 }
 
