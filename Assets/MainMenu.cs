@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
         PlayerStats.ChargeLength = 2000.0f;
         PlayerStats.SwingSize = 1.0f;
         PlayerStats.Level = 1;
+        PlayerStats.TotalTime = 0.0f;
         SceneManager.LoadScene("Level1", LoadSceneMode.Single);
     }
     

@@ -92,13 +92,15 @@ public class PlayerController : MonoBehaviour
             hpbar.SetHealth(HP);
             iFrames = maxIFrames;
             if (HP <= 0){
+                PlayerStats.TotalTime += GameObject.Find("Canvas").GetComponent<UI>().timing;
+                Debug.Log(PlayerStats.TotalTime);
                 if(PlayerStats.Level != 3)
                 {
                     SceneManager.LoadScene("UpgradeUI", LoadSceneMode.Single);
                 }
                 else
                 {
-                    SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+                    SceneManager.LoadScene("Level4", LoadSceneMode.Single);
                 }
             }
         }

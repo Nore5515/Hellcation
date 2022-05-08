@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    private float timing = 0.0f;
+    public float timing = 0.0f;
     public Text time;
 
     public GameObject heart1;

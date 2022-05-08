@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        maxSpawnTime = (int) Mathf.Round(maxSpawnTime * 0.95f);
+        maxSpawnTime = (int) Mathf.Round(maxSpawnTime * 0.99f);
         if (maxSpawnTime < (int) Mathf.Round(maxSpawnTime * 0.65f)){
             maxSpawnTime = (int) Mathf.Round(maxSpawnTime * 0.65f);
         }
