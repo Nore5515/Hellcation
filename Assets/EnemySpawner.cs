@@ -6,9 +6,9 @@ public class EnemySpawner : MonoBehaviour
 {
 
     public GameObject enemyToSpawn;
-    public int spawnTime = 100;
-    public int maxSpawnTime = 100;
-    private int origMaxTime;
+    public float spawnTime = 100;
+    public float maxSpawnTime = 100;
+    private float origMaxTime;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         if (spawnTime > 0){
-            spawnTime -= 1;
+            spawnTime -= Time.deltaTime;
         }
         else{
             SpawnEnemy();
@@ -30,9 +30,9 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        maxSpawnTime = (int) Mathf.Round(maxSpawnTime * 0.99f);
-        if (maxSpawnTime < (int) Mathf.Round(maxSpawnTime * 0.65f)){
-            maxSpawnTime = (int) Mathf.Round(maxSpawnTime * 0.65f);
+        maxSpawnTime = Mathf.Round(maxSpawnTime * 0.90f);
+        if (maxSpawnTime < Mathf.Round(maxSpawnTime * 0.25f)){
+            maxSpawnTime = Mathf.Round(maxSpawnTime * 0.25f);
         }
         GameObject enemyInst = Instantiate(enemyToSpawn, this.transform.position, Quaternion.identity);
         spawnTime = maxSpawnTime;
