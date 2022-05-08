@@ -92,7 +92,14 @@ public class PlayerController : MonoBehaviour
             hpbar.SetHealth(HP);
             iFrames = maxIFrames;
             if (HP <= 0){
-                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+                if(PlayerStats.Level != 3)
+                {
+                    SceneManager.LoadScene("UpgradeUI", LoadSceneMode.Single);
+                }
+                else
+                {
+                    //SceneManager.LoadScene("UpgradeUI", LoadSceneMode.Single);
+                }
             }
         }
         
