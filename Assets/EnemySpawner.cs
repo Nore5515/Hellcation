@@ -31,8 +31,8 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         maxSpawnTime = (int) Mathf.Round(maxSpawnTime * 0.95f);
-        if (maxSpawnTime < (int) Mathf.Round(maxSpawnTime * 0.5f)){
-            maxSpawnTime = (int) Mathf.Round(maxSpawnTime * 0.5f);
+        if (maxSpawnTime < (int) Mathf.Round(maxSpawnTime * 0.65f)){
+            maxSpawnTime = (int) Mathf.Round(maxSpawnTime * 0.65f);
         }
         GameObject enemyInst = Instantiate(enemyToSpawn, this.transform.position, Quaternion.identity);
         spawnTime = maxSpawnTime;

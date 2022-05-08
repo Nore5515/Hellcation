@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class UpgradeUI : MonoBehaviour
 {
+    
+    public Button movementSpeed;
+    public Button bulletVelocity;
+    public Button fireRate;
+    public Button numberOfBullets;
+    public Button swingSpeed;
+    public Button chargeLength;
+    public Button swingSize;
+
     public void MovementSpeed () {
         if (PlayerStats.UpgradeCoins > 0 && PlayerStats.MovementSpeed < 75.0f)
         {
