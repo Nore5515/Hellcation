@@ -13,6 +13,7 @@ public class SwordPivot : MonoBehaviour
     bool swordVisible = false;
     public bool canSwing = true;
     public float swingDelay = 1.0f;
+    public float swingMomentum = 2000.0f;
 
     public GameObject swordCollider;
     private List<Collider2D> enemies;
@@ -48,6 +49,11 @@ public class SwordPivot : MonoBehaviour
             }
             swordSlash.GetComponent<SpriteRenderer>().flipY = !swordSlash.GetComponent<SpriteRenderer>().flipY;
             
+            Vector2 direction = (this.transform.GetChild(1).position - this.transform.position);
+            direction.Normalize();
+            //Debug.Log(direction);
+            this.transform.parent.GetComponent<PlayerController>().playerBody.AddForce(direction * swingMomentum);
+
             StartCoroutine(SeeSword());
             StartCoroutine(SwordDelay());
             
