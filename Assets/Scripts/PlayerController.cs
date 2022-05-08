@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D body;
+    public Rigidbody2D playerBody;
 
     float horizontal;
     float vertical;
     float moveLimiter = 0.7f;
 
-    public float runSpeed = 20.0f;
+    public float runSpeed = 50.0f;
     public GameObject bullet;
     public AudioSource gunshot;
     public float bulletSpeed = 10.0f;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     void Start ()
     {
-        body = GetComponent<Rigidbody2D>();
+        playerBody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -47,7 +47,9 @@ public class PlayerController : MonoBehaviour
             vertical *= moveLimiter;
         } 
 
-        body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+        //playerBody.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+        Vector2 move = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+        playerBody.AddForce(move);
     }
 
     private IEnumerator Fire()
