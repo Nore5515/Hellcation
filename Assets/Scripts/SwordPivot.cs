@@ -62,7 +62,7 @@ public class SwordPivot : MonoBehaviour
             //Debug.Log(direction);
             this.transform.parent.GetComponent<PlayerController>().playerBody.AddForce(direction * PlayerStats.ChargeLength);
             this.transform.parent.GetComponent<PlayerController>().iFrames = this.transform.parent.GetComponent<PlayerController>().maxIFrames; 
-            this.transform.GetChild(3).GetComponent<PolygonCollider2D>().enabled = true;
+            this.transform.GetChild(2).GetComponent<PolygonCollider2D>().enabled = true;
 
             StartCoroutine(SeeSword());
             StartCoroutine(SwordDelay());
