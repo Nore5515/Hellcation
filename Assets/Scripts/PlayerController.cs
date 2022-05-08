@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float bulletSpeed = 10.0f;
     public float rof = 1.0f; //rate of fire
     public bool canfire = true;
+    public Animator animation;
 
     void Start ()
     {
@@ -31,6 +32,33 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire2") && canfire)
         {
             StartCoroutine(Fire());
+        }
+
+        ChangeDirection();
+    }
+
+
+    void ChangeDirection()
+    {
+        if (horizontal > 0){
+            Debug.Log("Right");
+            animation.Play("Right");
+        }
+        else if (horizontal < 0){
+            Debug.Log("Left");
+            animation.Play("Left");
+        }
+        else if (vertical > 0){
+            Debug.Log("Up");
+            animation.Play("Up");
+        }
+        else if (vertical < 0){
+            Debug.Log("Down");
+            animation.Play("Down");
+        } 
+        else{
+            Debug.Log("Idle");
+            animation.Play("Idle");
         }
     }
 
