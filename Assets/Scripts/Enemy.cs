@@ -20,17 +20,14 @@ public class Enemy : MonoBehaviour
     }
 
     public void StartDying(){
-        Debug.Log("Uh oh im starting to dieee");
         dying = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(dying);
         if (dying == false)
         {
-            // Debug.Log("NOT DEAD");
             Chase();
             if (player.transform.position.y > this.transform.position.y){
                 animation.Play("ImpWalkUp");
@@ -47,11 +44,9 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        // Debug.Log("DYING");
         if (dyingCountdown > 0)
         {   
             dyingCountdown -= 1;
-            // animation.SetTrigger()
             animation.Play("ImpDeath");
         } 
         else
@@ -66,7 +61,6 @@ public class Enemy : MonoBehaviour
     {
         Vector3 direction = rb.transform.position - player.transform.position;
         direction.Normalize();
-        // rb.velocity = (direction * Time.deltaTime * -speed);
         Vector2 newVelo = (direction * Time.deltaTime * -speed);
         rb.velocity += newVelo;
     }
