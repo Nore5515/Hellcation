@@ -43360,7 +43360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac77341756100164e955653a7acb5c8c, type: 3}
---- !u!1001 &1984692192
+--- !u!1001 &1871769370
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -43373,11 +43373,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 753482922280221815, guid: c921e37afcce91e47a007d2a1b985639, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.6778965
+      value: 13.490295
       objectReference: {fileID: 0}
     - target: {fileID: 753482922280221815, guid: c921e37afcce91e47a007d2a1b985639, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6112088
+      value: -1.5509708
       objectReference: {fileID: 0}
     - target: {fileID: 753482922280221815, guid: c921e37afcce91e47a007d2a1b985639, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43410,10 +43410,6 @@ PrefabInstance:
     - target: {fileID: 753482922280221815, guid: c921e37afcce91e47a007d2a1b985639, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5342332025623592411, guid: c921e37afcce91e47a007d2a1b985639, type: 3}
-      propertyPath: m_LinearDrag
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8160950979224782537, guid: c921e37afcce91e47a007d2a1b985639, type: 3}
       propertyPath: m_Name

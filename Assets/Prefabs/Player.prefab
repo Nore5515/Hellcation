@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 0}
-  runSpeed: 10
+  runSpeed: 50
   bullet: {fileID: 4987865421276569987, guid: 9859ce09a691e7d43b43dd72588b8150, type: 3}
   gunshot: {fileID: 146890173954244331}
   bulletSpeed: 1000
@@ -599,7 +599,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
