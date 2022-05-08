@@ -53,7 +53,10 @@ public class SwordPivot : MonoBehaviour
             enemies = swordCollider.GetComponent<SwordCollider>().GetEnemies();
             int index = 0;
             while (index < enemies.Count){
-                enemies[index].GetComponent<Enemy>().StartDying();
+                if (enemies[index] != null)
+                {
+                    enemies[index].GetComponent<Enemy>().StartDying();
+                }
                 index += 1;
             }
             
