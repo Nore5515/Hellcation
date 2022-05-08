@@ -15,6 +15,12 @@ public class UpgradeUI : MonoBehaviour
     public Button chargeLength;
     public Button swingSize;
 
+    public Text coinsLeft;
+
+    void Update(){
+        coinsLeft.text = PlayerStats.UpgradeCoins.ToString();
+    }
+
     public void MovementSpeed () {
         if (PlayerStats.UpgradeCoins > 0 && PlayerStats.MovementSpeed < 75.0f)
         {
