@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     private bool deathCall = false;
 
+    public int HP = 1;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

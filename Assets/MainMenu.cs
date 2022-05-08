@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject attributions;
+
     public void Begin()
     {
         PlayerStats.MovementSpeed = 50.0f;
@@ -15,5 +17,9 @@ public class MainMenu : MonoBehaviour
         PlayerStats.ChargeLength = 2000.0f;
         PlayerStats.SwingSize = 1.0f;
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+    }
+    
+    public void ToggleAttributions(){
+        attributions.SetActive(!attributions.activeSelf);
     }
 }
