@@ -20,6 +20,9 @@ public class Enemy : MonoBehaviour
     }
 
     public void StartDying(){
+        if (dying == false){
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
         dying = true;
     }
 
