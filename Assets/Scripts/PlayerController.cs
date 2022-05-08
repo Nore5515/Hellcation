@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public bool canfire = true;
     public int bcount = 1;
     public float spread = 10;
+    public float burstspeed = 0.05f;
 
 
     void Start ()
@@ -52,13 +53,9 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Fire()
     {
         canfire = false;
-        gunshot.Play();
-
-        for (int i = 0; i < bcount; i++)
-        {
-            NewBullet();
-        }
         
+        StartCoroutine(Bullets());
+
         float normalizedTime = 0;
         while(normalizedTime <= 1f)
         {
@@ -67,6 +64,21 @@ public class PlayerController : MonoBehaviour
         }
 
         canfire = true;
+    }
+
+    private IEnumerator Bullets()
+    {
+        for (int i = 0; i < bcount; i++)
+        {
+            gunshot.Play();
+            NewBullet();
+            float normalizedTime2 = 0;
+            while(normalizedTime2 <= 1f)
+            {
+                normalizedTime2 += Time.deltaTime / burstspeed;
+                yield return null;
+            }
+        }
     }
 
     void NewBullet()
