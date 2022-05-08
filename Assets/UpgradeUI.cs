@@ -21,6 +21,10 @@ public class UpgradeUI : MonoBehaviour
             PlayerStats.MovementSpeed += 5.0f;
             PlayerStats.UpgradeCoins--;
             Debug.Log(PlayerStats.MovementSpeed);
+            if (PlayerStats.MovementSpeed >= 75.0f)
+            {
+                movementSpeed.interactable = false;
+            }
         }
     }
     public void BulletVelocity () {
@@ -29,6 +33,10 @@ public class UpgradeUI : MonoBehaviour
             PlayerStats.BulletVelocity += 200.0f;
             PlayerStats.UpgradeCoins--;
             Debug.Log(PlayerStats.BulletVelocity);
+            if (PlayerStats.BulletVelocity >= 2000.0f)
+            {
+                bulletVelocity.interactable = false;
+            }
         }
     }
     public void FireRate () {
@@ -37,6 +45,10 @@ public class UpgradeUI : MonoBehaviour
             PlayerStats.FireRate -= 0.1f;
             PlayerStats.UpgradeCoins--;
             Debug.Log(PlayerStats.FireRate);
+            if (PlayerStats.FireRate <= 0.5f)
+            {
+                fireRate.interactable = false;
+            }
         }
     }
     public void NumberOfBullets () {
@@ -45,6 +57,10 @@ public class UpgradeUI : MonoBehaviour
             PlayerStats.NumberOfBullets++;
             PlayerStats.UpgradeCoins--;
             Debug.Log(PlayerStats.NumberOfBullets);
+            if (PlayerStats.NumberOfBullets >= 5)
+            {
+                numberOfBullets.interactable = false;
+            }
         }
     }
     public void SwingSpeed () {
@@ -53,6 +69,10 @@ public class UpgradeUI : MonoBehaviour
             PlayerStats.SwingSpeed -= 0.09f;
             PlayerStats.UpgradeCoins--;
             Debug.Log(PlayerStats.SwingSpeed);
+            if (PlayerStats.SwingSpeed <= 0.52f)
+            {
+                swingSpeed.interactable = false;
+            }
         }
     }
     public void ChargeLength () {
@@ -61,6 +81,10 @@ public class UpgradeUI : MonoBehaviour
             PlayerStats.ChargeLength += 200.0f;
             PlayerStats.UpgradeCoins--;
             Debug.Log(PlayerStats.ChargeLength);
+            if (PlayerStats.ChargeLength >= 3000.0f)
+            {
+                chargeLength.interactable = false;
+            }
         }
     }
     public void SwingSize () {
@@ -69,6 +93,10 @@ public class UpgradeUI : MonoBehaviour
             PlayerStats.SwingSize += 0.16f;
             PlayerStats.UpgradeCoins--;
             Debug.Log(PlayerStats.SwingSize);
+            if (PlayerStats.SwingSize >= 1.8f)
+            {
+                swingSize.interactable = false;
+            }
         }
     }
     public void NextLevel () {
