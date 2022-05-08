@@ -6,32 +6,60 @@ using UnityEngine.SceneManagement;
 public class UpgradeUI : MonoBehaviour
 {
     public void MovementSpeed () {
-        PlayerStats.MovementSpeed += 10.0f;
-        Debug.Log(PlayerStats.MovementSpeed);
+        if (PlayerStats.UpgradeCoins > 0 && PlayerStats.MovementSpeed < 75.0f)
+        {
+            PlayerStats.MovementSpeed += 5.0f;
+            PlayerStats.UpgradeCoins--;
+            Debug.Log(PlayerStats.MovementSpeed);
+        }
     }
     public void BulletVelocity () {
-        PlayerStats.BulletVelocity += 200.0f;
-        Debug.Log(PlayerStats.BulletVelocity);
+        if (PlayerStats.UpgradeCoins > 0 && PlayerStats.BulletVelocity < 2000.0f)
+        {
+            PlayerStats.BulletVelocity += 200.0f;
+            PlayerStats.UpgradeCoins--;
+            Debug.Log(PlayerStats.BulletVelocity);
+        }
     }
     public void FireRate () {
-        PlayerStats.FireRate -= 0.1f;
-        Debug.Log(PlayerStats.FireRate);
+        if (PlayerStats.UpgradeCoins > 0 && PlayerStats.FireRate > 0.5f)
+        {
+            PlayerStats.FireRate -= 0.1f;
+            PlayerStats.UpgradeCoins--;
+            Debug.Log(PlayerStats.FireRate);
+        }
     }
     public void NumberOfBullets () {
-        PlayerStats.NumberOfBullets++;
-        Debug.Log(PlayerStats.NumberOfBullets);
+        if (PlayerStats.UpgradeCoins > 0 && PlayerStats.NumberOfBullets < 5)
+        {
+            PlayerStats.NumberOfBullets++;
+            PlayerStats.UpgradeCoins--;
+            Debug.Log(PlayerStats.NumberOfBullets);
+        }
     }
     public void SwingSpeed () {
-        PlayerStats.SwingSpeed -= 0.09f;
-        Debug.Log(PlayerStats.SwingSpeed);
+        if (PlayerStats.UpgradeCoins > 0 && PlayerStats.SwingSpeed > 0.52f)
+        {
+            PlayerStats.SwingSpeed -= 0.09f;
+            PlayerStats.UpgradeCoins--;
+            Debug.Log(PlayerStats.SwingSpeed);
+        }
     }
     public void ChargeLength () {
-        PlayerStats.ChargeLength += 200.0f;
-        Debug.Log(PlayerStats.ChargeLength);
+        if (PlayerStats.UpgradeCoins > 0 && PlayerStats.ChargeLength < 3000.0f)
+        {
+            PlayerStats.ChargeLength += 200.0f;
+            PlayerStats.UpgradeCoins--;
+            Debug.Log(PlayerStats.ChargeLength);
+        }
     }
     public void SwingSize () {
-        PlayerStats.SwingSize += 0.16f;
-        Debug.Log(PlayerStats.SwingSize);
+        if (PlayerStats.UpgradeCoins > 0 && PlayerStats.SwingSize < 1.8f)
+        {
+            PlayerStats.SwingSize += 0.16f;
+            PlayerStats.UpgradeCoins--;
+            Debug.Log(PlayerStats.SwingSize);
+        }
     }
     public void NextLevel () {
         var level = "Level" + ++PlayerStats.Level;
