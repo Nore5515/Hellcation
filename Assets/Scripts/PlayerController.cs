@@ -15,10 +15,10 @@ public class PlayerController : MonoBehaviour
     public AudioSource gunshot;
     public float bulletSpeed = 10.0f;
     public float rof = 1.0f; //rate of fire
-    public bool canfire = true;
+    public bool canFire = true;
     public int bcount = 1;
     public float spread = 10;
-    public float burstspeed = 0.05f;
+    public float burstSpeed = 0.05f;
 
 
     void Start ()
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
         vertical = Input.GetAxisRaw("Vertical"); // -1 is down
 
-        if (Input.GetButtonDown("Fire2") && canfire)
+        if (Input.GetButtonDown("Fire2") && canFire)
         {
             StartCoroutine(Fire());
         }
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Fire()
     {
-        canfire = false;
+        canFire = false;
         
         StartCoroutine(Bullets());
 
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        canfire = true;
+        canFire = true;
     }
 
     private IEnumerator Bullets()
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
             float normalizedTime2 = 0;
             while(normalizedTime2 <= 1f)
             {
-                normalizedTime2 += Time.deltaTime / burstspeed;
+                normalizedTime2 += Time.deltaTime / burstSpeed;
                 yield return null;
             }
         }
