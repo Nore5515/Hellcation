@@ -13,10 +13,15 @@ public class Enemy : MonoBehaviour
     public bool dying = false;
     public int dyingCountdown = 300;
 
+    public GameObject enemyDeathSound;
+
+    private bool deathCall = false;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
+        enemyDeathSound = GameObject.Find("EnemyDeathSound");
     }
 
     public void StartDying(){
@@ -49,11 +54,18 @@ public class Enemy : MonoBehaviour
     {
         if (dyingCountdown > 0)
         {   
+            if (enemyDeathSound.GetComponent<AudioSource>().isPlaying == false && deathCall == false)
+            {
+                enemyDeathSound.GetComponent<AudioSource>().Play();
+            }
+            deathCall = true;
             dyingCountdown -= 1;
             animation.Play("ImpDeath");
+            
         } 
         else
         {
+            
             Destroy(this.gameObject);
         }
                     
