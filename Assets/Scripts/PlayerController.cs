@@ -11,15 +11,11 @@ public class PlayerController : MonoBehaviour
     float vertical;
     float moveLimiter = 0.7f;
 
-    public float runSpeed = 50.0f;
     public GameObject bullet;
     public AudioSource gunshot;
-    public float bulletSpeed = 10.0f;
-    public float rof = 1.0f; //rate of fire
 
     public Animator animation;
     public bool canFire = true;
-    public int bcount = 1;
     public float spread = 10;
     public float burstSpeed = 0.05f;
 
@@ -89,8 +85,8 @@ public class PlayerController : MonoBehaviour
             iFrames -= 1;
         }
 
-        //playerBody.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
-        Vector2 move = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+        //playerBody.velocity = new Vector2(horizontal * PlayerStats.MovementSpeed, vertical * PlayerStats.MovementSpeed);
+        Vector2 move = new Vector2(horizontal * PlayerStats.MovementSpeed, vertical * PlayerStats.MovementSpeed);
         playerBody.AddForce(move);
     }
 
@@ -116,7 +112,7 @@ public class PlayerController : MonoBehaviour
         float normalizedTime = 0;
         while(normalizedTime <= 1f)
         {
-            normalizedTime += Time.deltaTime / rof;
+            normalizedTime += Time.deltaTime / PlayerStats.FireRate;
             yield return null;
         }
 
@@ -125,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Bullets()
     {
-        for (int i = 0; i < bcount; i++)
+        for (int i = 0; i < PlayerStats.NumberOfBullets; i++)
         {
             gunshot.PlayOneShot(gunshot.clip, 0.24f);
             NewBullet();
@@ -146,7 +142,7 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = (this.transform.GetChild(2).GetChild(1).transform.position - this.transform.position);
         
         direction.Normalize();
-        instBulletRB.AddForce(direction * bulletSpeed);
+        instBulletRB.AddForce(direction * PlayerStats.BulletVelocity);
         instBullet.transform.rotation = this.transform.GetChild(2).transform.rotation;
 
         Destroy(instBullet, 3f);
