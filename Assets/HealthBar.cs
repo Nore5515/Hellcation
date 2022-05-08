@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
         
     }
 
-    void SetHealth(int health){
+    public void SetHealth(int health){
         if (health == 1){
             this.gameObject.GetComponent<Image>().sprite = health1;
         }

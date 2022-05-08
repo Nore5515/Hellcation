@@ -26,4 +26,5 @@ public class UI : MonoBehaviour
         Mathf.Round(timing);
         time.text = timing.ToString();
     }
+
 }

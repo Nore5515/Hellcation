@@ -22,10 +22,19 @@ public class PlayerController : MonoBehaviour
     public float spread = 10;
     public float burstSpeed = 0.05f;
 
+    public int maxHP = 3;
+    public int HP = 3;
+    public HealthBar hpbar;
+
+    public int iFrames = 0;
+    public int maxIFrames = 30;
+
+
 
     void Start ()
     {
         playerBody = GetComponent<Rigidbody2D>();
+        iFrames = maxIFrames;
     }
 
     void Update()
@@ -60,6 +69,7 @@ public class PlayerController : MonoBehaviour
         else if (vertical < 0){
             Debug.Log("Down");
             animation.Play("Down");
+            TakeDamage();
         } 
         else{
             Debug.Log("Idle");
@@ -76,9 +86,23 @@ public class PlayerController : MonoBehaviour
             vertical *= moveLimiter;
         } 
 
+        if (iFrames > 0){
+            iFrames -= 1;
+        }
+
         //playerBody.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
         Vector2 move = new Vector2(horizontal * runSpeed, vertical * runSpeed);
         playerBody.AddForce(move);
+    }
+
+    public void TakeDamage()
+    {
+        if (iFrames == 0){  
+            HP -= 1;
+            hpbar.SetHealth(HP);
+            iFrames = maxIFrames;
+        }
+        
     }
 
     private IEnumerator Fire()
